@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare_app/bmicalculation.dart';
 import 'package:healthcare_app/bokksession.dart';
+import 'package:healthcare_app/doctor.dart';
 
 class HomePage extends StatefulWidget
 {
@@ -30,106 +31,7 @@ class HomePageState extends State{
         title: Text("Homepage",textAlign: TextAlign.center,),
 
       ),
-      body: Center(
 
-
-          child: Container(
-             margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-              child: Column
-
-            (
-               children: <Widget>[
-
-                 Row(children: <Widget>[
-                 Container(
-                   child: Text("Hello",style: TextStyle(color: Colors.black,fontWeight:FontWeight.bold,fontSize: 30),),
-                 ),
-
-                 ]),
-                 Row(children: <Widget>[
-                   Container(
-                     child: Text("How can we help?",style: TextStyle(color: Colors.black,fontWeight:FontWeight.bold,fontSize: 20),),
-                   ),
-                 ]),
-        Container(
-    child:
-                 Column(
-                   children: [
-                     Row(children: <Widget>[
-                     Container(
-                       decoration: BoxDecoration(
-                           image: DecorationImage(
-                               image: AssetImage("assets/images/doctor.png"), fit: BoxFit.cover)),
-                       margin: const EdgeInsets.fromLTRB(20, 90, 20, 20),child:
-                     RaisedButton(
-                       onPressed: (){
-                         //Navigator.push(context, MaterialPageRoute(builder: (context)=>BookSession()));
-                       },
-                       child:  Text("See Doctor",style: TextStyle(color: Colors.black),),
-                     ),
-                       width: 130,
-                       height:100,
-
-
-                     ),
-                     Container(
-                         margin: const EdgeInsets.fromLTRB(20, 90, 20, 20),
-                         child:
-                     RaisedButton(
-                       onPressed: (){
-                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>BookSession()));
-                       },
-                       child:  Text("Find Hospital",style: TextStyle(color: Colors.black),),
-                     ),
-                       width: 130,
-                       height:100,
-                    
-                     ),
-    ]),
-                   ],
-                 )
-        ),
-                 Container(
-                     child:
-                     Column(
-                       children: [
-                         Row(children: <Widget>[
-                           Container(
-
-                         margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                             child:
-                           RaisedButton(
-
-                             onPressed: (){
-                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>BookSession()));
-                             },
-                             child:  Text("Book Appointment",style: TextStyle(color: Colors.black),),
-                           ),
-                             width: 130,
-                             height:100,
-                           ),
-                           Container(
-                               margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                             child:
-                           RaisedButton(
-                             onPressed: (){
-                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>BookSession()));
-                             },
-                             child:  Text("List of Drug",style: TextStyle(color: Colors.black),),
-                           ),
-                             width: 130,
-                             height:100,
-                           ),
-                         ]),
-                       ],
-                     )
-                 ),
-
-
-               ],
-             )
-                 ),
-                 ),
 
       drawer: Drawer(
 
@@ -172,7 +74,192 @@ class HomePageState extends State{
         ),
       ),
 
+      body:Container(
+    child: Column(
+    children: [
+    ListTile(
+      title: Text('Hello,',
+      style: TextStyle(
+        fontSize: 30,
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    ),
+    ListTile(
+    title: Text('How Can We Take Care Yourself?',
+    style: TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+    ),
+    ),
+    ),
 
+    Container(
+    child: Column(
+    children: [
+    Row(
+    children: [
+    GestureDetector(
+    onTap: () {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>SeeDoctor()));
+    },
+    child:Card(
+    child: Container(
+    child: Column(
+    children: [
+    ListTile(
+    leading: Icon(Icons.account_circle,
+    color: Colors.white,
+    size: 40,),
+    ),
+    ListTile(
+    title: Text("Find Doctor",
+    style: TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    ),),
+    subtitle: Text("210 Doctors",
+    style: TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.white60,
+    ),),
+    contentPadding: const EdgeInsets.only(
+    top: 20, left: 15),
+    )
+    ],
+    ),
+    width: 150,
+    height: 150,
+    ),
+    color: Colors.indigo,
+    ),
+    ),
+      GestureDetector(
+        onTap: () {
+         // Navigator.push(context, MaterialPageRoute(builder: (context)=>SeeDoctor()));
+        },
+    child:Card(
+    child: Container(
+    child: Column(
+    children: [
+    ListTile(
+    leading: Icon(Icons.account_balance,
+    color: Colors.white,
+    size: 40,),
+    ),
+    ListTile(
+    title: Text("Find Hospital",
+    style: TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    ),),
+    subtitle: Text("30 Hospital",
+    style: TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.white60,
+    ),),
+    contentPadding: const EdgeInsets.only(
+    top: 20, left: 15),
+    )
+    ],
+    ),
+    width: 150,
+    height: 150,
+    ),
+    color: Colors.black54,
+    ),
+      )
+    ],
+
+    ),
+
+    Row(
+    children: [
+      GestureDetector(
+        onTap: () {
+         // Navigator.push(context, MaterialPageRoute(builder: (context)=>SeeDoctor()));
+        },
+
+   child: Card(
+    child: Container(
+    child: Column(
+    children: [
+    ListTile(
+    leading: Icon(Icons.add_to_photos,
+    color: Colors.white,
+    size: 40,),
+    ),
+    ListTile(
+    title: Text("Appointment",
+    style: TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    ),),
+    subtitle: Text("50 Available",
+    style: TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.white60,
+    ),),
+    contentPadding: const EdgeInsets.only(
+    top: 20, left: 15),
+    )
+    ],
+    ),
+    width: 150,
+    height: 150,
+    ),
+    color: Colors.black54,
+    ),
+    ),
+
+      GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>SeeDoctor()));
+        },
+    child:Card(
+    child: Container(
+    child: Column(
+    children: [
+    ListTile(
+    leading: Icon(Icons.calendar_today,
+    color: Colors.white,
+    size: 40,),
+    ),
+    ListTile(
+    title: Text("DrugList",
+    style: TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    ),),
+    subtitle: Text("22 Services",
+    style: TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.white60,
+    ),),
+    contentPadding: const EdgeInsets.only(
+    top: 20, left: 15),
+    )
+    ],
+    ),
+    width: 150,
+    height: 150,
+    ),
+    color: Colors.black54,
+    ),
+      )
+    ],
+    ),
+    ],
+    ),
+    padding: const EdgeInsets.all(27),
+    ),
+    ],
+    ),
+    padding: const EdgeInsets.all(10),
+    color: Color.fromARGB(100, 255, 244, 214),
+    ),
     );
   }
 
