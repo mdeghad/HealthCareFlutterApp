@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare_app/createaccount.dart';
 import 'package:healthcare_app/homepage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget
 {
@@ -14,6 +16,59 @@ class LoginPage extends StatefulWidget
 class LoginPageState extends State{
   final emailController= TextEditingController();
   final passwordController=TextEditingController();
+  bool newuser;
+  SharedPreferences logindata;
+  bool checkValue = false;
+  String user ="megha@gmail.com";
+  String pass="megha@123";
+  @override
+  void initState() {
+
+    super.initState();
+    check_if_already_login();
+  }
+
+  void check_if_already_login() async {
+    logindata = await SharedPreferences.getInstance();
+    newuser = (logindata.getBool('login') ?? true);
+
+    print(newuser);
+    if (newuser == false) {
+      Navigator.pushReplacement(
+          context, new MaterialPageRoute(builder: (context) => HomePage()));
+    }
+    else{
+
+    }
+  }
+  bool checkingdata() {
+    if (user.length !=0 && pass.length != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool rememberMe = false;
+
+  void _onRememberMeChanged(bool newValue) => setState(() {
+    rememberMe = newValue;
+
+    if (rememberMe) {
+      logindata.setString('email', "megha@gmail.com");
+      logindata.setString('password', "megha@123");
+    } else {
+      // TODO: Forget the user
+    }
+  });
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+   emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
 
   Future<void> _showMyDialog() async {
     return showDialog<void>(
@@ -62,14 +117,9 @@ class LoginPageState extends State{
                         clipper:WaveClipper(), //set our custom wave clipper
                           child: Image.network("https://png.pngtree.com/thumb_back/fw800/background/20190926/pngtree-pink-color-flower-background-image_317655.jpg"),
                         ),
-
-
-
                 Text("Let's Get Started",style: TextStyle(color: Colors.pinkAccent,fontSize: 25,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
 
-
                         TextField(
-
                             cursorColor: Colors.pinkAccent,
                             controller: emailController,
                             style: TextStyle(color: Colors.black),
@@ -77,13 +127,8 @@ class LoginPageState extends State{
                             decoration: new InputDecoration(
                               hintText: "Email",
                               contentPadding: EdgeInsets.all(5),
+                              border: InputBorder.none
 
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.pinkAccent),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.pinkAccent),
-                              ),
                             )
                         ),
 
@@ -97,13 +142,8 @@ class LoginPageState extends State{
                           border: InputBorder.none,
                           hintText: "Password",
                              fillColor: Colors.white,
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.pinkAccent),
 
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.pinkAccent),
-                              ),
+
                             ),
                          ),
 
@@ -111,10 +151,13 @@ class LoginPageState extends State{
                                         MaterialButton(
 
                                           minWidth: 350,
-                                          onPressed: () {
-                                                          setState(() {
-                                                          if(emailController.text=="megha@gmail.com" && passwordController.text=="megha@123") {
+                                          onPressed: ()  {
+                                                          setState(()  {
+                                                            if(emailController.text=="megha@gmail.com" && passwordController.text=="megha@123") {
                                                           print("success");
+                                                          logindata.setBool('login', false);
+                                                          logindata.setString('email', "megha@gmail.com");
+                                                          logindata.setString('password', "megha@123");
                                                           Navigator.push(
                                                           context,
                                                           MaterialPageRoute(builder: (context) => HomePage()),
@@ -125,7 +168,6 @@ class LoginPageState extends State{
                                                           print("flase");
                                                           }
                                                           });
-
                                                           },
 
                     textColor: Colors.white,
@@ -134,16 +176,22 @@ class LoginPageState extends State{
     side: BorderSide(color: Colors.pinkAccent)
     ),
     color: Colors.pinkAccent,
-
     child:Text('Login', style: TextStyle(fontSize: 15),textAlign: TextAlign.center,),
                   ),
 
-          SizedBox(
+
+    new CheckboxListTile(
+    value: rememberMe,
+    title: new Text("Remember me"),
+    controlAffinity: ListTileControlAffinity.leading,
+    onChanged: _onRememberMeChanged
+    ),
+
+    SizedBox(
             height: 5,
           ),
 
                FlatButton(
-                    
                child: Text("Forgot Password?",style: TextStyle(fontSize: 15,color: Colors.pinkAccent),textAlign: TextAlign.center,),
                 ),
 
@@ -153,10 +201,11 @@ class LoginPageState extends State{
 
                 MaterialButton(
                   minWidth: 350,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>CreateAccount()));
+                  },
                   textColor: Colors.white,
                   child:
-
         Text('New User?', style: TextStyle(fontSize: 15),textAlign: TextAlign.center,),
     shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(30.0),
@@ -167,11 +216,10 @@ class LoginPageState extends State{
     ),
 
 
-                Text('Or?', style: TextStyle(fontSize: 15,color: Colors.pinkAccent),textAlign: TextAlign.center,),
+          Text('Or?', style: TextStyle(fontSize: 15,color: Colors.pinkAccent),textAlign: TextAlign.center,),
           SizedBox(
             height: 20,
           ),
-
 
                 MaterialButton(
                   onPressed: () {},
@@ -192,6 +240,8 @@ class LoginPageState extends State{
 
         }
 }
+
+
 
 class WaveClipper extends CustomClipper<Path>{
   @override
