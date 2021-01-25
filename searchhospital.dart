@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:healthcare_app/doctorinformation.dart';
 class SearchDoctor extends StatefulWidget {
@@ -14,33 +15,52 @@ class SearchDoctor extends StatefulWidget {
 
 class SerchDoctorState extends State{
  final searchController=TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-appBar: AppBar(),
-      body: Column(
+appBar: AppBar(
+  title: Text("Search Doctor",),
+ // backgroundColor: Colors.transparent,
+),
+      body: ListView(
         children:[
-          Text('Find your desired Doctor',style:TextStyle(fontWeight: FontWeight.bold,fontSize: 40),),
+          Container(
+           // margin: const EdgeInsets.all(20),
+            child:ListTile(
+              leading: Icon(Icons.format_list_numbered,color: Colors.blue,),
+              trailing: Icon(Icons.account_circle_outlined,color: Colors.blue,),
+            ),
+          ),
+
 
           Container(
+            margin: const EdgeInsets.all(20),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 border: Border.all(color: Colors.black)
             ),
-            margin: const EdgeInsets.all(10),
+
             child: ListTile(
               title: TextField(
+showCursor: false,
                 decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.search),
+                  suffixIcon: Icon(Icons.search,color: Colors.redAccent,),
+                    border: InputBorder.none,
 
-                hintText:"search"),
+
+                hintText:"Search for doctors"),
               ),
             ),
-
+            height: 40,
           ),
+Container(child:
 
-          Text("Categories",style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+          Text("Categories",style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+          ), margin: const EdgeInsets.all(15),
+),
           SizedBox(
             height: 5,
           ),
@@ -59,14 +79,14 @@ appBar: AppBar(),
                           child: Column(
                             children: [
                               FractionalTranslation(
-                                translation: Offset(0.5, -0.3),
+                                translation: Offset(0.5, 0),
                                 child: Align(
                                   child: Container(
                                     height: 50,
                                     width: 50,
-                                    child: Image.asset("assets/images/teeth.jpg"),
+                                   child: Image.network("https://i.pinimg.com/originals/16/37/c6/1637c6a53c961e70f1c6c83620f4e3d4.jpg",scale: 10.0,),
                                     decoration: BoxDecoration(
-                                        color: Colors.blue,
+                                       color: Colors.blue,
                                         borderRadius: BorderRadius.circular(10)
                                     ),
                                     padding: const EdgeInsets.only(left: 0),
@@ -76,7 +96,7 @@ appBar: AppBar(),
                               ),
 
                               Container(
-                                child: Text("Dental \nSurgeon",style: TextStyle(color: Colors.red),),
+                                child: Text("Dental \n Surgeon",style: TextStyle(color: Colors.red),),
                                 padding: const EdgeInsets.only(top: 0, right: 20, left: 10),
                                 margin: const EdgeInsets.only(top: 0, right: 0, left: 0),
                               ),
@@ -93,12 +113,13 @@ appBar: AppBar(),
                           child: Column(
                             children: [
                               FractionalTranslation(
-                                translation: Offset(0.5, -0.3),
+                                translation: Offset(0.5,0),
                                 child: Align(
                                   child: Container(
+
                                     height: 50,
                                     width: 50,
-                                    child: Image.network("https://media.istockphoto.com/vectors/anatomical-heart-isolated-muscular-organ-in-human-vector-id625147262"),
+                                    child: Image.network("https://thumbor.kenhub.com/nzadGE09BTcROtoXg73L-VCVrJQ=/fit-in/800x1600/filters:watermark(/images/logo_url.png,-10,-10,0):background_color(FFFFFF):format(jpeg)/images/library/11110/Heart_Thumbnail.png",scale: 10.0,),
                                     decoration: BoxDecoration(
                                         color: Colors.blue,
                                         borderRadius: BorderRadius.circular(10)
@@ -108,7 +129,7 @@ appBar: AppBar(),
                                 ),
                               ),
                               Container(
-                                child: Text("Heart Sugeon",style: TextStyle(color: Colors.red),),
+                                child: Text("Heart \n Sugeon",style: TextStyle(color: Colors.red),),
                                 padding: const EdgeInsets.only(top: 0, right: 20, left: 10),
                                 margin: const EdgeInsets.only(top: 0, right: 0, left: 0),
                               ),
@@ -125,14 +146,14 @@ appBar: AppBar(),
                         child: Column(
                           children: [
                             FractionalTranslation(
-                              translation: Offset(0.5, -0.3),
+                              translation: Offset(0.5,0),
                               child: Align(
                                 child: Container(
                                   height: 50,
                                   width: 50,
-                                  child: Image.network("https://visioneyeinstitute.com.au/wp-content/uploads/laser-eye-safety.jpg"),
+                                  child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMmSpSDcjUh4OGykNpMLE4o1d665TkGfukgA&usqp=CAU",scale: 10.0,),
                                   decoration: BoxDecoration(
-                                      color: Colors.blue,
+                                      color: Colors.orangeAccent,
                                       borderRadius: BorderRadius.circular(10)
                                   ),
                                   padding: const EdgeInsets.only(left: 0),
@@ -142,13 +163,10 @@ appBar: AppBar(),
                             ),
 
                             Container(
-                              child: Text("Eye Speciality",style: TextStyle(color: Colors.red),),
+                              child: Text("Eye \n Speciality",style: TextStyle(color: Colors.red),),
                               padding: const EdgeInsets.only(top: 0, right: 20, left: 10),
                               margin: const EdgeInsets.only(top: 0, right: 0, left: 0),
-// color: Colors.black54,
-// height: 100,
-// width: 70,
-// margin: const EdgeInsets.all(20),
+
                             ),
                           ],
                         ),
@@ -163,14 +181,14 @@ appBar: AppBar(),
                         child: Column(
                           children: [
                             FractionalTranslation(
-                              translation: Offset(0.5, -0.3),
+                              translation: Offset(0.5,0),
                               child: Align(
                                 child: Container(
                                   height: 50,
                                   width: 50,
-                                  child: Image.network("https://cdn5.vectorstock.com/i/thumb-large/53/29/heart-cardiology-symbol-logo-icon-vector-3145329.jpg"),
+                                  child: Image.network("https://cdn5.vectorstock.com/i/thumb-large/53/29/heart-cardiology-symbol-logo-icon-vector-3145329.jpg",scale: 10.0,height: 10,width: 5,),
                                   decoration: BoxDecoration(
-                                      color: Colors.blue,
+                                      color: Colors.redAccent,
                                       borderRadius: BorderRadius.circular(10)
                                   ),
                                   padding: const EdgeInsets.only(left: 0),
@@ -178,7 +196,7 @@ appBar: AppBar(),
                               ),
                             ),
                             Container(
-                              child: Text("Cardiology Sugeon",style: TextStyle(color: Colors.red),),
+                              child: Text("Cardiology \n Sugeon",style: TextStyle(color: Colors.red),),
                               padding: const EdgeInsets.only(top: 0, right: 20, left: 10),
                               margin: const EdgeInsets.only(top: 0, right: 0, left: 0),
 
@@ -186,81 +204,112 @@ appBar: AppBar(),
                           ],
                         ),
                       ),
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 20),
                     ),
                   ],
                 ),
-                width: 350,
-                height: 90,
+                width: 392,
+                height: 100,
               )
-//Text("Top Doctors",textAlign: TextAlign.left,style:TextStyle(fontWeight: FontWeight.bold,fontSize: 30))
+
             ],
           ),
           ),
 Container(
-  margin:const EdgeInsets.only(top: 10),
+  margin:const EdgeInsets.only(top: 20),
     child:
-          Text("Top Doctors",textAlign:TextAlign.left,style:TextStyle(fontWeight: FontWeight.bold,fontSize: 15)),
+          Text("Top Doctors",style:TextStyle(fontWeight: FontWeight.bold,fontSize: 20),textAlign: TextAlign.center,),
 ),
 
-      GestureDetector(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorInformation()));
-        },
-        child:
+
+          GestureDetector(
+          onTap: () {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorInformation()));
+    },
+        child:  Container(
+          margin: const EdgeInsets.only(top: 10,right: 10,left: 10),
+          child:Card(child:
           Container(
-            margin: const EdgeInsets.all(10),
             child: ListTile(
-            tileColor: Colors.blue,
+
             leading: CircleAvatar(
               backgroundImage: AssetImage("assets/images/doctor.jpg"), // no matter how big it is, it won't overflow
             ),
             title: Text("Dr.Stella Kane"),
             subtitle: Text("Heart Surgeon-Flower Hospitals"),
           ),
+            height: MediaQuery.of(context).size.height*0.1,
+            width:MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+
+              color: Colors.blue,
           ),
       ),
+        )
+          ),
+          ),
+
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorInformation()));
             },
             child:
-          Container(margin:const EdgeInsets.all(10),
-          child:
+          Container(
+            margin: const EdgeInsets.only(top: 10,right: 10,left: 10),
+          child:Card(child:Container(child:
           ListTile(
-            tileColor: Colors.orange,
+
             leading: CircleAvatar(
               backgroundImage: AssetImage("assets/images/doctor.jpg"), // no matter how big it is, it won't overflow
             ),
+
             title: Text("Dr.Jhon"),
             subtitle: Text("Dental Surgeon- Flower Hospitals"),
           ),
-          ),
-          ),
+            height: MediaQuery.of(context).size.height*0.1,
+            width:MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
 
-      GestureDetector(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorInformation()));
-        },
-        child:
-          Container(
-            margin: const EdgeInsets.all(10),
-            child:
-          ListTile(
-
-            tileColor: Colors.indigoAccent,
-            leading: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/doctor.jpg"), // no matter how big it is, it won't overflow
+color: Colors.orange,
             ),
-            title: Text("Dr.Smith"),
-            subtitle: Text("Eye Specialist-Flower Hospitals"),
           ),
           ),
-      ),
+          )
+              ),
+
+    GestureDetector(
+
+    onTap: () {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>DoctorInformation()));
+    },
+        child:  Container(
+            margin: const EdgeInsets.only(top: 10,right: 10,left: 10),
+            child: Card(child:
+              Container(child:
+              ListTile(
+
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/doctor.jpg"), // no matter how big it is, it won't overflow
+                ),
+                title: Text("Dr.Smith"),
+                subtitle: Text("Eye Specialist-Flower Hospitals"),
+              ),
+                height: MediaQuery.of(context).size.height*0.1,
+                width:MediaQuery.of(context).size.width,
+
+                decoration: BoxDecoration(
 
 
-        ],
-      ),
+                  color: Colors.indigoAccent
+                ),
+
+              ),
+              )
+          ),
+              ),
+]),
+
+
     );
   }
 }
