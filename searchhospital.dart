@@ -23,7 +23,7 @@ class SerchDoctorState extends State{
     return Scaffold(
 appBar: AppBar(
   title: Text("Search Doctor",),
- // backgroundColor: Colors.transparent,
+  //backgroundColor: Colors.transparent,
 ),
       body: ListView(
         children:[
@@ -34,7 +34,10 @@ appBar: AppBar(
               trailing: Icon(Icons.account_circle_outlined,color: Colors.blue,),
             ),
           ),
-
+          Container(
+            margin: const EdgeInsets.all(20),
+          child:Text('Find Your Desired Doctor',style:TextStyle(fontWeight: FontWeight.bold,fontSize: 40),),
+          ),
 
           Container(
             margin: const EdgeInsets.all(20),
