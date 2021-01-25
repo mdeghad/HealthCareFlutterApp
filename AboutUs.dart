@@ -38,7 +38,8 @@ else{
    }
 
    void launchSms() async{
-     String phoneNumer="sms://9876543212";
+     String phoneNumer="sms://9876543212,";
+     // +"sms://1232434,"+"sms://5675676";
      if(await canLaunch(phoneNumer)) {
        await launch(phoneNumer);
      }
@@ -98,7 +99,7 @@ body: Container(
          "that obesity is also associated with early mortality. "
          "We examined associations between body mass index (BMI, reported as kg/m2) and healthcare"
          " utilization with and without taking BMI-specific survival into consideration.",style: TextStyle(fontSize: 15),
-   textAlign: TextAlign.justify,textDirection: TextDirection.rtl, ),
+   textAlign: TextAlign.justify ),
    ),
    Row(children: [
     Container(

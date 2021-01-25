@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare_app/searchhospital.dart';
 
 class SeeDoctor extends StatefulWidget{
 
@@ -23,35 +24,14 @@ return Scaffold(
   ),
   body: Container(
 
-    // decoration: BoxDecoration(
-    //     gradient: LinearGradient(
-    //        begin: Alignment.topRight,
-    //        end: Alignment.bottomLeft,
-    //         stops: [0.5, 0.5, 0.3, 1],
-    //         colors: [Colors.pinkAccent, Colors.white,Colors.indigo,Colors.pinkAccent
-    //         ])
-    // ),
+
     child: Column(
 
       children: [
-Container(
-  child: Stack(children: <Widget>[ //stack overlaps widgets
-    Opacity( //semi red clippath with more height and with 0.5 opacity
-    opacity: 0.5,
-    child: ClipPath(
-      clipper:WaveClipper(), //set our custom wave clipper
-      child:Container(
-        color:Colors.blue,
-        height:200,
-      ),
-    ),
-  ),
-]),
-),
-
-    Container(
+        Container(
 
       padding: const EdgeInsets.all(30),
+
     child: Text('Choose The Doctor You Want',
       style: TextStyle(
         fontSize: 30,
@@ -60,37 +40,51 @@ Container(
       ),
     ),
   ),
-  Container(
-    child: Text('Lorem ipsum dolor amet,consecteture adipiscing inet deli',
-      style: TextStyle(
-        fontSize: 15,
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-      ),
-    ),
-  ),
+
+
+        Container(
+          margin: const EdgeInsets.all(20),
+          child: Text('Lorem ipsum dolor amet,consecteture adipiscing inet deli',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ),
 
 
 
-          RaisedButton(
-              onPressed: () {},
-              textColor: Colors.white,
-              padding: const EdgeInsets.all(0.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: <Color>[
-                      Color(0xFF0D47A1),
-                      Color(0xFF1976D2),
-                      Color(0xFF42A5F5),
-                    ],
-                  ),
-                ),
-                padding: const EdgeInsets.all(10.0),
-                child:
-                const Text('Get Started', style: TextStyle(fontSize: 20)),
-              ),
-          )
+        RaisedButton(
+
+          onPressed: () {
+            Navigator.push(context,MaterialPageRoute(builder: (context)=>SearchDoctor())
+
+            );
+          },
+          textColor: Colors.white,
+          padding: const EdgeInsets.all(0.0),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              side: BorderSide(color: Colors.redAccent)
+          ),
+          // child: Container(
+            color: Colors.redAccent,
+          //   padding: const EdgeInsets.all(10.0),
+            child:
+            const Text('Get Started', style: TextStyle(fontSize: 20)),
+          ),
+
+        Container(
+          child: Image.asset("assets/images/doctor.jpg",height: MediaQuery.of(context).size.height*0.6,),
+
+        ),
+
+
+
+
+
+
 ]
 
 
@@ -131,8 +125,8 @@ class WaveClipper extends CustomClipper<Path>{
   }
 }
 
-// class BezierClipper extends CustomClipper<Path>{
 //
+// class BezierClipper extends CustomClipper<Path>{
 //   final int state;
 //   BezierClipper(this.state);
 //

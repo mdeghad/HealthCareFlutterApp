@@ -1,11 +1,19 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:healthcare_app/createaccount.dart';
 import 'package:healthcare_app/homepage.dart';
+import 'package:healthcare_app/loginpage.dart';
+import 'package:healthcare_app/searchhospital.dart';
 
 
 void main() {
-  runApp(MyApp());
+
+  runApp(
+
+    MyApp(),
+
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
      // title: 'Flutter Demo',
 
-      home: MyHomePage(title:""),
+      home: LoginPage(),
     );
   }
 }

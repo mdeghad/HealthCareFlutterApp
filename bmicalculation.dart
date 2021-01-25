@@ -61,107 +61,135 @@ class BMICalculationstate extends State<BMICalculation>{
       //backgroundColor: Colors.orangeAccent,
       appBar: AppBar(
           title: Text("BMI Calculator"),
-          backgroundColor: Colors.indigo
+          backgroundColor: Colors.blue
       ),
 
-      body: Column(
+      body: Container(
+                  decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  stops: [0.7, 0.7, 0.7, 1],
+                  colors: [Colors.lightBlueAccent, Colors.pinkAccent,
+                  Colors.lightBlueAccent, Colors.pinkAccent])
+                  ),
+        child:
+
+    Column(
 
           children: <Widget>[
+
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
 
                   new Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(7.0),
-                    width: 200,
-                    height:80,
-                    child: Text("BMI",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 80.0),),
+
+                    // alignment: Alignment.center,
+                    // margin: const EdgeInsets.all(7.0),
+                   child: ClipPath(
+                      clipper:WaveClipper(), //set our custom wave clipper
+                      child: Image.asset("assets/images/logo.png",width: MediaQuery.of(context).size.width,),
+                    ),
+                   // child: Text("BMI",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 80.0),),
                   ),
 
                 ]),
 
-            new Container(
-              margin: const EdgeInsets.all(10.0),
 
-              decoration: new BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(20),
-                border: new Border.all(
-                  color: Colors.indigo,
-                  width: 10.0,
-
-                ),
-
-              ),
-              child: new TextField(
-
+              new TextField(
+                    cursorColor: Colors.pinkAccent,
+                    keyboardType: TextInputType.number,
+                    decoration: new InputDecoration(
+                        contentPadding: EdgeInsets.all(5),
+                        border: InputBorder.none,
+                    hintText:"Enter Your Weight in Kg"),
                 controller: weightController1,
-                textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.black),
-                decoration: new InputDecoration(
-                  hintText: 'Enter a weight in kg',
-                  border: InputBorder.none,
-
-                ),
               ),
-            ),
-            new Container(
-              margin: const EdgeInsets.all(10.0),
 
-              decoration: new BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(20),
-                border: new Border.all(
-                  color: Colors.indigo,
-                  width: 10.0,
-
-                ),
-
-              ),
-              child: new TextField(
+             new TextField(
 
                 controller: heightController,
-                textAlign: TextAlign.center,
+               keyboardType: TextInputType.number,
+
                 style: TextStyle(color: Colors.black),
                 decoration: new InputDecoration(
-                  hintText: 'Enter a height in cm',
+                  contentPadding: EdgeInsets.all(5),
+                  hintText: 'Enter Your Height in Cm',
                   border: InputBorder.none,
 
                 ),
               ),
-            ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                  side: BorderSide(color: Colors.indigo)
-              ),
+
+            MaterialButton(
+              minWidth: 350,
               onPressed: getData,
-              color: Colors.indigo,
-              child:  Text("Calculate BMI"),
-
-            ),
-
-            RaisedButton(
+              textColor: Colors.white,
+              child:
+              Text('Calculate BMI', style: TextStyle(fontSize: 15),textAlign: TextAlign.center,),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                  side: BorderSide(color: Colors.indigo)
+                  borderRadius: BorderRadius.circular(30.0),
+                  side: BorderSide(color: Colors.pinkAccent)
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BookSession()),
-                );
-              },
-              color: Colors.indigo,
-              child:  Text("Book Session"),
+              color: Colors.pinkAccent,
 
             ),
 
-            Text(result.toString(),style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
-            Text("Your BMI is"+" "+status.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+        MaterialButton(
+          minWidth: 350,
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>BookSession()));
+          },
+          textColor: Colors.white,
+          child:
+          Text('Book Session', style: TextStyle(fontSize: 15),textAlign: TextAlign.center,),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              side: BorderSide(color: Colors.pinkAccent)
+          ),
+          color: Colors.pinkAccent,
+
+
+
+            ),
+
+            Text(result.toString(),style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white)),
+            Text("Your BMI is"+" "+status.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white),),
           ]),
+      ),
     );
   }
 
+}
+
+class WaveClipper extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+
+    var path = new Path();
+    path.lineTo(0, size.height); //start path with this if you are making at bottom
+
+    var firstStart = Offset(size.width / 5, size.height);
+    //fist point of quadratic bezier curve
+    var firstEnd = Offset(size.width / 2.25, size.height - 50.0);
+    //second point of quadratic bezier curve
+    path.quadraticBezierTo(firstStart.dx, firstStart.dy, firstEnd.dx, firstEnd.dy);
+
+    var secondStart = Offset(size.width - (size.width / 3.24), size.height - 105);
+    //third point of quadratic bezier curve
+    var secondEnd = Offset(size.width, size.height - 10);
+    //fourth point of quadratic bezier curve
+    path.quadraticBezierTo(secondStart.dx, secondStart.dy, secondEnd.dx, secondEnd.dy);
+
+    path.lineTo(size.width, 0); //end with this path if you are making wave at bottom
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false; //if new instance have different instance than old instance
+    //then you must return true;
+  }
 }

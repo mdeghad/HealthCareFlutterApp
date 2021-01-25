@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare_app/homepage.dart';
+import 'package:healthcare_app/loginpage.dart';
 
 class CreateAccount extends StatefulWidget{
   @override
@@ -63,187 +64,85 @@ return Scaffold(
     title: Text("Create Account",textAlign: TextAlign.center,),
 
   ),
-  body: Container(
-
-    decoration: BoxDecoration(
-        gradient: LinearGradient(
-            // begin: Alignment.topRight,
-            // end: Alignment.bottomLeft,
-          //  stops: [0.7, 0.7, 0.7, 1],
-            colors: [Colors.pinkAccent, Colors.blue,
-             ])
-    ),
-    child: ListView(
-
+  body:ListView(
       children:<Widget> [
-
-        Image.asset("assets/images/drp.png",height: 50),
-        Container(
-          margin: const EdgeInsets.fromLTRB(40,10,40,10),
-
-          //margin: const EdgeInsets.fromLTRB(50,10,10,30),
-         // color: Colors.red,
-          child: Text("Register",style: TextStyle(fontSize: 40,color: Colors.black,fontWeight:FontWeight.bold),textAlign:TextAlign.left,),
-
-       width: 40, ),
-        Container(
-          // padding: const EdgeInsets.all(10.0),
-          //margin: const EdgeInsets.all(10.0),
-          child: Text("FirstName",style: TextStyle(fontSize: 20,color: Colors.black),textAlign: TextAlign.left),
-
-        ),
-        Container(
-         // color: Colors.indigo,
-          margin: const EdgeInsets.fromLTRB(10,10,10,10),
-          child:ListTile(
-
-          //leading: const Icon(Icons.account_circle),
-          title: TextField(
-              controller: fnameController,
-
-            //  textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
-              decoration: new InputDecoration(
-
-                //hintText: 'Enter Your FirstName',
-              )
-          ),
-
-        ),
+        ClipPath(
+          clipper: WaveClipper(),
+          child: Image.network("https://png.pngtree.com/thumb_back/fw800/background/20190926/pngtree-pink-color-flower-background-image_317655.jpg"),
         ),
 
-        Container(
-          // padding: const EdgeInsets.all(10.0),
-          //margin: const EdgeInsets.all(10.0),
-          child: Text("LastName",style: TextStyle(fontSize: 20,color: Colors.black),textAlign: TextAlign.left),
+        TextField(
+        cursorColor: Colors.pinkAccent,
+        controller: fnameController,
+          style: TextStyle(color: Colors.black),
+          keyboardType: TextInputType.emailAddress,
+          decoration: new InputDecoration(
+          hintText: "FirstName",
+          contentPadding: EdgeInsets.all(5),
+          border: InputBorder.none
+
+        )
 
         ),
-Container(
-  //color:Colors.indigo,
-  margin: const EdgeInsets.fromLTRB(10,10,10,10),
-  child:
-        ListTile(
 
-          //leading: const Icon(Icons.assignment_ind_rounded),
-          title: TextField(
-              controller:lnameController,
-            //  textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black),
-              decoration: new InputDecoration(
-                //hintText: 'Enter your Lastname',
-              )
-          ),
+            TextField(
+            cursorColor: Colors.pinkAccent,
+            controller: lnameController,
+            style: TextStyle(color: Colors.black),
+            keyboardType: TextInputType.emailAddress,
+            decoration: new InputDecoration(
+            hintText: "LastName",
+            contentPadding: EdgeInsets.all(5),
+            border: InputBorder.none
 
+            )
+            ),
+
+
+            TextField(
+            cursorColor: Colors.pinkAccent,
+            controller: emailController,
+            style: TextStyle(color: Colors.black),
+            keyboardType: TextInputType.emailAddress,
+            decoration: new InputDecoration(
+            hintText: "Email",
+            contentPadding: EdgeInsets.all(5),
+            border: InputBorder.none
+
+            )
+            ),
+
+
+        TextField(
+            cursorColor: Colors.pinkAccent,
+            obscureText: true,
+            controller: passwordController,
+            style: TextStyle(color: Colors.black),
+            keyboardType: TextInputType.emailAddress,
+            decoration: new InputDecoration(
+                hintText: "Password",
+                contentPadding: EdgeInsets.all(5),
+                border: InputBorder.none
+
+            )
         ),
-),
-        Container(
-          // padding: const EdgeInsets.all(10.0),
-          //margin: const EdgeInsets.all(10.0),
-          child: Text("Email",style: TextStyle(fontSize: 20,color: Colors.black),textAlign: TextAlign.left),
 
-        ),
-        Container(
-         // color:Colors.indigo,
-          margin: const EdgeInsets.fromLTRB(10,10,10,10),
+        MaterialButton(
+          minWidth: 350,
+          onPressed: () {},
+          textColor: Colors.white,
           child:
-        ListTile(
 
-         //leading: const Icon(Icons.mail),
-          title: TextField(
-              controller: emailController,
-              //textAlign: TextAlign.center,
-              keyboardType: TextInputType.emailAddress,
-              style: TextStyle(color: Colors.black),
-              decoration: new InputDecoration(
-               // hintText: 'Enter your email',
-              )
+          Text('Register', style: TextStyle(fontSize: 15),textAlign: TextAlign.center,),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              side: BorderSide(color: Colors.pinkAccent)
           ),
+          color: Colors.pinkAccent,
 
         ),
-        ),
-
-        Container(
-          // padding: const EdgeInsets.all(10.0),
-          //margin: const EdgeInsets.all(10.0),
-          child: Text("Password",style: TextStyle(fontSize: 20,color: Colors.black),textAlign: TextAlign.left),
-
-        ),
-        Container(
-         // color:Colors.indigo,
-          margin: const EdgeInsets.fromLTRB(10,10,10,10),
-            child:
-
-        ListTile(
-
-         // leading: const Icon(Icons.visibility),
-          title: TextField(
-
-              controller: passwordController,
-              autofocus: false,
-              obscureText: true,
-              cursorColor: Colors.white,
-              //textAlign: TextAlign.center,
-              keyboardType: TextInputType.visiblePassword,
-              style: TextStyle(color: Colors.black),
-              decoration: new InputDecoration(
-              suffixIcon: Icon(Icons.visibility),
-
-              )
-          ),
-
-        ),
-        ),
-
-
-
-Column(children:<Widget>
-    [
-
-       RaisedButton(
-       //  color: Colors.black,
-         shape: RoundedRectangleBorder(side: BorderSide(
-             color: Colors.black,
-             width: 1,
-             style: BorderStyle.solid
-         ), ),
-          onPressed:(){
-            setState(() {
-    fname = fnameController.text ;
-    lname= lnameController.text ;
-    email = emailController.text ;
-    password=passwordController.text;
-
-
-    // if(fnameController != '' || lnameController != '' || emailController != '' || passwordController!='') {
-    //   _showMyDialog();
-    //
-    // }
-   if(fnameController == '' && lnameController =='' &&  emailController == '' && passwordController=='')
-    {
-    showMyDialog();
-
-
-    print('Text Field is empty, Please Fill All Data');
-
-    }
-   else{
-     _showMyDialog();
-     Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
-   }
-    });
-          },
-
-          child:  Text("Create Account",style: TextStyle(color: Colors.black)),
-
-
-      )
-  ],
-),
-
-      ],
-    ),
-
-  ),
+])
+       
 );
   }
 
@@ -280,5 +179,36 @@ Column(children:<Widget>
         );
       },
     );
+  }
+}
+
+class WaveClipper extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+
+    var path = new Path();
+    path.lineTo(0, size.height); //start path with this if you are making at bottom
+
+    var firstStart = Offset(size.width / 5, size.height);
+    //fist point of quadratic bezier curve
+    var firstEnd = Offset(size.width / 2.25, size.height - 50.0);
+    //second point of quadratic bezier curve
+    path.quadraticBezierTo(firstStart.dx, firstStart.dy, firstEnd.dx, firstEnd.dy);
+
+    var secondStart = Offset(size.width - (size.width / 3.24), size.height - 105);
+    //third point of quadratic bezier curve
+    var secondEnd = Offset(size.width, size.height - 10);
+    //fourth point of quadratic bezier curve
+    path.quadraticBezierTo(secondStart.dx, secondStart.dy, secondEnd.dx, secondEnd.dy);
+
+    path.lineTo(size.width, 0); //end with this path if you are making wave at bottom
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false; //if new instance have different instance than old instance
+    //then you must return true;
   }
 }

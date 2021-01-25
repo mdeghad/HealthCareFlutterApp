@@ -69,7 +69,11 @@ class LoginPageState extends State{
     super.dispose();
   }
 
-
+  void showInSnackBar(String value) {
+    Scaffold.of(context).showSnackBar(new SnackBar(
+        content: new Text(value)
+    ));
+  }
   Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
@@ -156,8 +160,9 @@ class LoginPageState extends State{
                                                             if(emailController.text=="megha@gmail.com" && passwordController.text=="megha@123") {
                                                           print("success");
                                                           logindata.setBool('login', false);
-                                                          logindata.setString('email', "megha@gmail.com");
-                                                          logindata.setString('password', "megha@123");
+                                                          logindata.setString('email', this.emailController.text);
+                                                          logindata.setString('password', this.passwordController.text);
+                                                          //showInSnackBar("Login Successful");
                                                           Navigator.push(
                                                           context,
                                                           MaterialPageRoute(builder: (context) => HomePage()),
